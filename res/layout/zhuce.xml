@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:gravity="center"
+      android:text="用户注册"	
+      android:textSize="25dp"
+      android:textColor="#0099cc"
+      />
+  
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/corner_round"
+        >
+        <LinearLayout
+            android:id="@+id/usersname_panel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dip"
+            android:paddingRight="10dip"
+            android:paddingTop="20dip"
+            >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="用户名:"
+                android:textSize="20dp"
+                android:textColor="#0099cc"          
+                />
+               <EditText
+                  android:id="@+id/usersname_zhuce"
+                  android:layout_width="fill_parent"
+                  android:layout_height="40dp"
+                  android:background="@drawable/edittext"
+                  android:hint="仅字母"
+                   />
+               </LinearLayout>
+               
+         <LinearLayout
+            android:id="@+id/userscode_panel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dip"
+            android:paddingRight="10dip"
+            android:paddingTop="80dip"
+            >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="密    码:"
+                android:textSize="20dp"
+                android:textColor="#0099cc"          
+                />
+               <EditText
+                  android:id="@+id/userscode_zhuce"
+                  android:layout_width="fill_parent"
+                  android:layout_height="40dp"
+                  android:background="@drawable/edittext"
+                  android:hint="仅字母和数字"
+                   />
+               </LinearLayout>
+               
+          <LinearLayout
+            android:id="@+id/usersoccupation_panel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dip"
+            android:paddingRight="10dip"
+            android:paddingTop="150dip"
+            >
+               <RadioGroup
+                   android:id="@+id/rgroup"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingLeft="60dp"
+                   android:orientation="horizontal">
+                   <RadioButton
+                       android:id="@+id/student_sel"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="学生"
+                       android:textColor="#0099cc"
+                       android:textSize="18dp"
+                       />
+                   <RadioButton
+                       android:id="@+id/sale_sel"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="商家"
+                       android:textColor="#0099cc"
+                       android:textSize="18dp"
+                       />
+                   </RadioGroup>
+                </LinearLayout>
+
+          <Button
+              android:id="@+id/zhuce_button"
+              android:layout_height="wrap_content"
+              android:layout_width="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:layout_centerHorizontal="true"
+              android:paddingBottom="150dp"
+              android:text="注册"
+              android:textColor="#0099cc"
+              android:background="#FFFFFF"
+              />
+          </RelativeLayout>
+</LinearLayout>
