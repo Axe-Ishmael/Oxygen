@@ -12,6 +12,9 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    
+    
 
     <application
         android:allowBackup="true"
@@ -31,6 +34,8 @@
             			  android:logo="@drawable/actionbar_icon"
             			  android:label="Sponsor"
             			  android:theme="@android:style/Theme.Holo.Light"
+            			  android:configChanges="keyboardHidden|orientation"
+            			  android:launchMode="singleTask"
             >
             </activity>
             <activity android:name=".Neirong"
@@ -43,6 +48,31 @@
             			  android:label="Sponsor"
                     >
                     </activity>
+                    <activity android:name="com.king.photo.activity.AlbumActivity"
+                        android:configChanges="keyboardHidden|orientation"
+                        >
+                        </activity>
+                        
+                     <activity android:name="com.king.photo.activity.Fabu"
+                         android:configChanges="keyboardHidden|orientation"
+                         >
+                        </activity>
+                        
+                      <activity android:name="com.king.photo.activity.GalleryActivity"
+                          android:configChanges="keyboardHidden|orientation"
+                          >
+                        </activity>
+                        
+                       <activity android:name="com.king.photo.activity.ImageFile"
+                           android:configChanges="keyboardHidden|orientation"
+                           >
+                        </activity>
+                        
+                        <activity android:name="com.king.photo.activity.ShowAllPhoto"
+                            android:configChanges="keyboardHidden|orientation"
+                            >
+                        </activity>
+                        
     </application>
 
 </manifest>
