@@ -55,7 +55,7 @@ public class AlbumActivity extends Activity {
 	private Button cancel;
 	private Intent intent;
 	// 预览按钮
-	private Button preview;
+	//private Button preview;
 	private Context mContext;
 	private ArrayList<ImageItem> dataList;
 	private AlbumHelper helper;
@@ -144,8 +144,8 @@ public class AlbumActivity extends Activity {
 		cancel = (Button) findViewById(Res.getWidgetID("cancel"));
 		cancel.setOnClickListener(new CancelListener());
 		back.setOnClickListener(new BackListener());
-		preview = (Button) findViewById(Res.getWidgetID("preview"));
-		preview.setOnClickListener(new PreviewListener());
+		//preview = (Button) findViewById(Res.getWidgetID("preview"));
+		//preview.setOnClickListener(new PreviewListener());
 		intent = getIntent();
 		Bundle bundle = intent.getExtras();
 		gridView = (GridView) findViewById(Res.getWidgetID("myGrid"));
@@ -206,20 +206,20 @@ public class AlbumActivity extends Activity {
 	public void isShowOkBt() {
 		if (Bimp.tempSelectBitmap.size() > 0) {
 			okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
-			preview.setPressed(true);
+			//preview.setPressed(true);
 			okButton.setPressed(true);
-			preview.setClickable(true);
+			//preview.setClickable(true);
 			okButton.setClickable(true);
 			okButton.setTextColor(Color.WHITE);
-			preview.setTextColor(Color.WHITE);
+			//preview.setTextColor(Color.WHITE);
 		} else {
 			okButton.setText(Res.getString("finish")+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
-			preview.setPressed(false);
-			preview.setClickable(false);
+			//preview.setPressed(false);
+			//preview.setClickable(false);
 			okButton.setPressed(false);
 			okButton.setClickable(false);
 			okButton.setTextColor(Color.parseColor("#E1E0DE"));
-			preview.setTextColor(Color.parseColor("#E1E0DE"));
+			//preview.setTextColor(Color.parseColor("#E1E0DE"));
 		}
 	}
 

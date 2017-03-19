@@ -311,7 +311,8 @@ public class Fabu extends Activity {
         if(keyCode == KeyEvent.KEYCODE_BACK){
                 Intent intent  = new Intent(this,Publish.class) ;
                 startActivity(intent);
-                
+                finish();
+          
             return true;
         }
         return super.onKeyDown(keyCode, event);
