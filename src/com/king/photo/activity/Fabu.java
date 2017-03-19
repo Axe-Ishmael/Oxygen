@@ -294,18 +294,23 @@ public class Fabu extends Activity {
 		}
 	}
 	
-	/*public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			for(int i=0;i<PublicWay.activityList.size();i++){
 				if (null != PublicWay.activityList.get(i)) {
 					PublicWay.activityList.get(i).finish();
 				}
 			}
-			System.exit(0);
+			Bimp.tempSelectBitmap.clear();
+			Intent intent  = new Intent(this,Publish.class) ;
+            startActivity(intent);
+            finish();
 		}
 		return true;
-	}*/
+	}
 	
+	
+	/*
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {  //捕获物理按键BACK的点击事件，转到Publish界面
         if(keyCode == KeyEvent.KEYCODE_BACK){
@@ -317,7 +322,7 @@ public class Fabu extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
-	
+	*/
 
 }
 
