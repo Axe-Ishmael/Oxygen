@@ -301,10 +301,10 @@ public class Fabu extends Activity {
 					PublicWay.activityList.get(i).finish();
 				}
 			}
-			Bimp.tempSelectBitmap.clear();
-			Intent intent  = new Intent(this,Publish.class) ;
-            startActivity(intent);
-            finish();
+			PublicWay.activityList.clear();
+			//Intent intent  = new Intent(this,Publish.class) ;
+            //startActivity(intent);
+			//finish();
 		}
 		return true;
 	}

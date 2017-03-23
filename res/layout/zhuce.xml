@@ -65,7 +65,7 @@
                 android:textColor="#0099cc"          
                 />
                <EditText
-                  android:id="@+id/userscode_zhuce"
+                  android:id="@+id/userspassword_zhuce"
                   android:layout_width="fill_parent"
                   android:layout_height="40dp"
                   android:background="@drawable/edittext"

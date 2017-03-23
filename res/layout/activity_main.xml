@@ -27,7 +27,7 @@
                 android:textColor="#FFFFFF" />
 
             <EditText
-                android:id="@+id/username_tx"
+                android:id="@+id/username_ed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                  android:background="@drawable/edittext"
@@ -52,6 +52,7 @@
                 android:textColor="#FFFFFF" />
 
             <EditText
+                android:id="@+id/userpassword_ed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                  android:background="@drawable/edittext"
