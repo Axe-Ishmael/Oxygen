@@ -1,5 +1,9 @@
 package com.king.photo.activity;
 
+import java.io.File;
+
+import BmobBean.InfoBean;
+import Tools.PathGetter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +13,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,12 +33,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+
+
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 
 import com.example.oxygen.Publish;
 import com.example.oxygen.R;
@@ -48,6 +62,12 @@ import com.king.photo.util.Res;
  */
 public class Fabu extends Activity {
 
+	private final int REQUEST_CODE_PICK_IMAGE = 1;
+	private static Uri uri;
+	private Button send;
+	private EditText info_ed;
+	private static String info_text;
+	
 	private GridView noScrollgridview;
 	private GridAdapter adapter;
 	private View parentView;
@@ -90,6 +110,10 @@ public class Fabu extends Activity {
 				.findViewById(R.id.item_popupwindows_Photo);
 		Button bt3 = (Button) view
 				.findViewById(R.id.item_popupwindows_cancel);
+		send = (Button)findViewById(R.id.activity_selectimg_send);
+		info_ed = (EditText)findViewById(R.id.info_ed);
+		//info_text = info_ed.getText().toString();
+		
 		parent.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -108,9 +132,12 @@ public class Fabu extends Activity {
 		});
 		bt2.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				/*
 				Intent intent = new Intent(Fabu.this,
 						AlbumActivity.class);
 				startActivity(intent);
+				*/
+				getImageFromAlbum();
 				overridePendingTransition(R.anim.activity_translate_in, R.anim.activity_translate_out);
 				pop.dismiss();
 				ll_popup.clearAnimation();
@@ -122,6 +149,59 @@ public class Fabu extends Activity {
 				ll_popup.clearAnimation();
 			}
 		});
+		
+		send.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				File file  =  new File(PathGetter.getPath(Fabu.this, uri));
+				Log.d("FileName",file.toString());
+				info_text = info_ed.getText().toString();
+				String info = info_text;
+				final InfoBean infoBean = new InfoBean();
+				//infoBean.setInfo(info);
+				Toast.makeText(Fabu.this, info, 800).show();
+				final BmobFile bmobFile = new BmobFile(file);
+				infoBean.setPicPath(bmobFile);
+				bmobFile.upload(new UploadFileListener() {
+					
+					@Override
+					public void done(BmobException arg0) {
+						// TODO Auto-generated method stub
+						if(arg0 == null){
+						String info = info_text;
+						String  uri = bmobFile.getFileUrl();
+						infoBean.setUri(uri);
+						infoBean.setInfo(info);
+						infoBean.save(new SaveListener<String>() {
+							
+							@Override
+							public void done(String arg0, BmobException arg1) {
+								// TODO Auto-generated method stub
+								if(arg1 == null){
+									Toast.makeText(Fabu.this, "上传成功", 800).show();
+									Intent intent = new Intent(Fabu.this,Publish.class);
+									startActivity(intent);
+									finish();
+								}else{
+									Toast.makeText(Fabu.this, "上传失败", 800).show();
+									Log.d("SendActivity",arg1.toString());
+								}
+							}
+						});
+						}else{
+							Log.d("SendFile",arg0.toString());
+						}
+						
+					}
+				});
+				
+				
+				
+			}
+		}
+			);
 		
 		noScrollgridview = (GridView) findViewById(R.id.noScrollgridview);	
 		noScrollgridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
@@ -278,10 +358,12 @@ public class Fabu extends Activity {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		case TAKE_PICTURE:
+		//switch (requestCode) {
+		/*
+		case TAKE_PICTURE:	
 			if (Bimp.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {
-				
+				//Uri uri =data.getData(); 
+				//Log.d("TAGGGGGG",uri.toString());
 				String fileName = String.valueOf(System.currentTimeMillis());
 				Bitmap bm = (Bitmap) data.getExtras().get("data");
 				FileUtils.saveBitmap(bm, fileName);
@@ -291,7 +373,43 @@ public class Fabu extends Activity {
 				Bimp.tempSelectBitmap.add(takePhoto);
 			}
 			break;
-		}
+			*/
+		
+		if (resultCode != RESULT_OK) {
+
+			   Log.e("TAG->onresult", "ActivityResult resultCode error");
+
+			   return;
+
+			  }
+		
+		else if (requestCode == REQUEST_CODE_PICK_IMAGE) {             
+           uri = data.getData();  
+           Bitmap  bmp = null;
+           if (uri != null){
+        	   bmp = getBitmapFromUri(uri);
+           } 
+             //to do find the path of pic  
+            ImageItem takePhoto = new ImageItem();
+			takePhoto.setBitmap(bmp);
+			Bimp.tempSelectBitmap.add(takePhoto);
+         
+     }   else if(requestCode == TAKE_PICTURE)
+     {
+    	 if (Bimp.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {
+				 uri =data.getData(); 
+				//Log.d("TAGGGGGG",uri.toString());
+				String fileName = String.valueOf(System.currentTimeMillis());
+				Bitmap bm = (Bitmap) data.getExtras().get("data");
+				FileUtils.saveBitmap(bm, fileName);
+				
+				ImageItem takePhoto = new ImageItem();
+				takePhoto.setBitmap(bm);
+				Bimp.tempSelectBitmap.add(takePhoto);
+     }
+     }
+		
+		
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -309,6 +427,30 @@ public class Fabu extends Activity {
 		return true;
 	}
 	
+	   /**
+     * 判断SDK Level 选择不同的打开相册的方式
+     */
+    protected void getImageFromAlbum() {  
+       /*
+    	Intent intent = new Intent(Intent.ACTION_PICK);  
+        intent.setType("image/*");//相片类型  
+        startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);  
+        */
+        
+        boolean isKitKatO = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        Intent getAlbum;
+        
+        if (isKitKatO) {
+         getAlbum = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        } else {
+         getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+        }
+        
+        getAlbum.setType("image/*");
+
+        startActivityForResult(getAlbum, REQUEST_CODE_PICK_IMAGE);
+
+    }  	
 	
 	/*
 	@Override
@@ -323,6 +465,29 @@ public class Fabu extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 	*/
+    
+    
+    /**
+     * 将URI转化为相应的Bitmap
+     */
+    private Bitmap getBitmapFromUri(Uri uri)
+    {
+    	
+     try
+     {
+      // 读取uri所在的图片
+      Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+      return bitmap;
+     }
+     catch (Exception e)
+     {
+      Log.e("[Android]", e.getMessage());
+      Log.e("[Android]", "目录为：" + uri);
+      e.printStackTrace();
+      return null;
+     }
+    }
+    
 
 }
 
