@@ -20,7 +20,7 @@ public class MyspaceFragment extends Fragment{
 		username_tx = (TextView)myspaceLayout.findViewById(R.id.My_username);
 		username_tx.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		username_tx.getPaint().setAntiAlias(true);
-		username_tx.setText("Fxxk.....");
+		username_tx.setText("SkateBoard");
 		return myspaceLayout;
 	}
 }

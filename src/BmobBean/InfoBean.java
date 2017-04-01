@@ -13,7 +13,7 @@ public class InfoBean extends BmobObject{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void InfiBean(String info,BmobFile file) {
+	public void InfoBean(String info,BmobFile file) {
 		// TODO Auto-generated method stub
 
 		this.info  = info;

@@ -3,6 +3,9 @@ package com.king.photo.activity;
 import java.io.File;
 
 import BmobBean.InfoBean;
+import BmobBean.InfoBean_sal;
+import BmobBean.InfoBean_stu;
+import BmobBean.MyUser;
 import Tools.PathGetter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -43,6 +46,7 @@ import android.widget.Toast;
 
 
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -60,13 +64,15 @@ import com.king.photo.util.Res;
 /**
  * 发布页面activity
  */
-public class Fabu extends Activity {
+public class Fabu extends Activity  {
 
+	private MyUser userinfo ;
 	private final int REQUEST_CODE_PICK_IMAGE = 1;
 	private static Uri uri;
 	private Button send;
 	private EditText info_ed;
 	private static String info_text;
+	private static String occupation;
 	
 	private GridView noScrollgridview;
 	private GridAdapter adapter;
@@ -114,6 +120,9 @@ public class Fabu extends Activity {
 		info_ed = (EditText)findViewById(R.id.info_ed);
 		//info_text = info_ed.getText().toString();
 		
+		
+		userinfo = BmobUser.getCurrentUser(MyUser.class);
+		occupation = (String)BmobUser.getObjectByKey("occupation");
 		parent.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -154,6 +163,7 @@ public class Fabu extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				/*
 				// TODO Auto-generated method stub
 				File file  =  new File(PathGetter.getPath(Fabu.this, uri));
 				Log.d("FileName",file.toString());
@@ -196,8 +206,94 @@ public class Fabu extends Activity {
 						
 					}
 				});
-				
-				
+				*/
+				if(occupation.equals("学生")){
+					// TODO Auto-generated method stub
+					File file  =  new File(PathGetter.getPath(Fabu.this, uri));
+					Log.d("FileName",file.toString());
+					info_text = info_ed.getText().toString();
+					String info = info_text;
+					final InfoBean_stu infoBean_stu = new InfoBean_stu();
+					//infoBean.setInfo(info);
+					Toast.makeText(Fabu.this, info, 800).show();
+					final BmobFile bmobFile = new BmobFile(file);
+					infoBean_stu.setPicPath(bmobFile);
+					bmobFile.upload(new UploadFileListener() {
+						
+						@Override
+						public void done(BmobException arg0) {
+							// TODO Auto-generated method stub
+							if(arg0 == null){
+							String info = info_text;
+							String  uri = bmobFile.getFileUrl();
+							infoBean_stu.setUri(uri);
+							infoBean_stu.setInfo(info);
+							infoBean_stu.save(new SaveListener<String>() {
+								
+								@Override
+								public void done(String arg0, BmobException arg1) {
+									// TODO Auto-generated method stub
+									if(arg1 == null){
+										Toast.makeText(Fabu.this, "上传成功", 800).show();
+										Intent intent = new Intent(Fabu.this,Publish.class);
+										startActivity(intent);
+										finish();
+									}else{
+										Toast.makeText(Fabu.this, "上传失败", 800).show();
+										Log.d("SendActivity",arg1.toString());
+									}
+								}
+							});
+							}else{
+								Log.d("SendFile",arg0.toString());
+							}
+							
+						}
+					});
+				}else if(occupation.equals("商家")){
+					// TODO Auto-generated method stub
+					File file  =  new File(PathGetter.getPath(Fabu.this, uri));
+					Log.d("FileName",file.toString());
+					info_text = info_ed.getText().toString();
+					String info = info_text;
+					final InfoBean_sal infoBean_sal = new InfoBean_sal();
+					//infoBean.setInfo(info);
+					Toast.makeText(Fabu.this, info, 800).show();
+					final BmobFile bmobFile = new BmobFile(file);
+					infoBean_sal.setPicPath(bmobFile);
+					bmobFile.upload(new UploadFileListener() {
+						
+						@Override
+						public void done(BmobException arg0) {
+							// TODO Auto-generated method stub
+							if(arg0 == null){
+							String info = info_text;
+							String  uri = bmobFile.getFileUrl();
+							infoBean_sal.setUri(uri);
+							infoBean_sal.setInfo(info);
+							infoBean_sal.save(new SaveListener<String>() {
+								
+								@Override
+								public void done(String arg0, BmobException arg1) {
+									// TODO Auto-generated method stub
+									if(arg1 == null){
+										Toast.makeText(Fabu.this, "上传成功", 800).show();
+										Intent intent = new Intent(Fabu.this,Publish.class);
+										startActivity(intent);
+										finish();
+									}else{
+										Toast.makeText(Fabu.this, "上传失败", 800).show();
+										Log.d("SendActivity",arg1.toString());
+									}
+								}
+							});
+							}else{
+								Log.d("SendFile",arg0.toString());
+							}
+							
+						}
+					});
+				}
 				
 			}
 		}

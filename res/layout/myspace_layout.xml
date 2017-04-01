@@ -40,7 +40,7 @@
                   android:id="@+id/My_username"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                   android:textColor="#0099cc"
+                   android:textColor="#993399"
                  />
                   </LinearLayout>
                   
