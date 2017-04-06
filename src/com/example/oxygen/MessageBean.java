@@ -1,8 +1,12 @@
 package com.example.oxygen;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
 public class MessageBean {
 
-	private int PhotoDrawableId;  
+	private Uri  PhotoDrawableId;  
     private String MessageName;  
     private String MessageContent;  
     private String MessageTime; 
@@ -10,20 +14,20 @@ public class MessageBean {
     public MessageBean(){
     }
     
-    public MessageBean(int photoDrawableId,String messageName,String messageContent,String  messageTime){
+    public MessageBean(Uri photoDrawableId,String messageName,String messageContent,String  messageTime){
     
     	super();
     	PhotoDrawableId = photoDrawableId;
     	MessageName = messageName;
-    	MessageContent = messageContent;
-    	MessageTime = messageTime;
+    	//MessageContent = messageContent;
+    	//MessageTime = messageTime;
     }
     
-    public int getPhotoDrawableId(){
+    public Uri getPhotoDrawableId(){
     	return PhotoDrawableId;
     }
     
-    public void setPhotoDrawableId(int mPhotoDrawableId){
+    public void setPhotoDrawableId(Uri mPhotoDrawableId){
     	this.PhotoDrawableId = mPhotoDrawableId;
     }
     
@@ -56,5 +60,6 @@ public class MessageBean {
                 + ", MessageName=" + MessageName + ", MessageContent="  
                 + MessageContent + ", MessageTime=" + MessageTime + "]";
         }
+    
     
 }

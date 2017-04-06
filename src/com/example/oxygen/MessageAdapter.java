@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.squareup.picasso.Picasso;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +47,10 @@ public class MessageAdapter extends BaseAdapter{
 	        // TODO Auto-generated method stub  
 	        View v = mInflater.inflate(R.layout.student_list_item, null);  //��ʵstudent��sale����student_list_item
 	          
-	        ImageView imageView = (ImageView) v.findViewById(R.id.student_pic);  
-	        imageView.setImageResource(mListMsgBean.get(position).getPhotoDrawableId());  
+	       
+	        ImageView imageView = (ImageView) v.findViewById(R.id.student_pic);
+	        Picasso.with(mContext).load(mListMsgBean.get(position).getPhotoDrawableId()).resize(120, 70).centerCrop().into(imageView);
+	       // imageView.setImageURI(mListMsgBean.get(position).getPhotoDrawableId());  
 	          
 	        TextView nameMsg = (TextView)v.findViewById(R.id.student_name);  
 	        nameMsg.setText(mListMsgBean.get(position).getMessageName());  
