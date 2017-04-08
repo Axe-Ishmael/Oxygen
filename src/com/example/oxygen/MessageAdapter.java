@@ -7,6 +7,7 @@ import java.util.List;
 import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class MessageAdapter extends BaseAdapter{
 	          
 	       
 	        ImageView imageView = (ImageView) v.findViewById(R.id.student_pic);
-	        Picasso.with(mContext).load(mListMsgBean.get(position).getPhotoDrawableId()).resize(120, 70).centerCrop().into(imageView);
+	        Picasso.with(mContext).load(mListMsgBean.get(position).getPhotoDrawableId()).resize(120, 70).centerCrop().config(Bitmap.Config.RGB_565).into(imageView);
 	       // imageView.setImageURI(mListMsgBean.get(position).getPhotoDrawableId());  
 	          
 	        TextView nameMsg = (TextView)v.findViewById(R.id.student_name);  

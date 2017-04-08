@@ -26,6 +26,8 @@ import android.widget.ListView;
 
 public class StudentFragment extends Fragment{
 
+	private static String item_content;
+	private static Uri item_uri;
 	private static Drawable  drawable;
 	private static Bitmap bmp;
 	private static String info_text;
@@ -51,7 +53,13 @@ public class StudentFragment extends Fragment{
 					int position, long id) {
 				// TODO Auto-generated method stub
 				MessageBean Msgbean = mMsgBean.get(position);
-				Intent intent = new Intent(getActivity(),Neirong.class);
+				item_uri = Msgbean.getPhotoDrawableId();
+				item_content = Msgbean.getMessageName();
+				//Intent intent = new Intent(getActivity(),Neirong.class);
+				Intent intent = new Intent();
+				intent.putExtra("ImageUri", item_uri.toString());
+				intent.putExtra("ContentText", item_content);
+				intent.setClass(getActivity(),Neirong.class);
 				startActivity(intent);
 			}
 		});
@@ -77,7 +85,7 @@ public class StudentFragment extends Fragment{
 					//info_imaguri = info.getUri();
 					info_imaguri = Uri.parse(info.getUri());
 					Log.d("URL",info_imaguri.toString());
-					Log.d("Bitmap",info_imaguri.toString());
+					Log.d("Uri",info_imaguri.toString());
 					mMsgBean.add(new MessageBean(info_imaguri, info_text, "", ""));
 				}
 				

@@ -1,14 +1,25 @@
 package com.example.oxygen;
 
+import com.squareup.picasso.Picasso;
+
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Neirong extends Activity{
 
+	private ImageView imageview;
+	private TextView textview;
+	private String contnetText;
+	private Uri imageUri;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -16,6 +27,13 @@ public class Neirong extends Activity{
 		setContentView(R.layout.neirong);
 		ActionBar actionBar = getActionBar();  
 	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    imageview = (ImageView)findViewById(R.id.nr_pic);
+	    textview = (TextView)findViewById(R.id.nr_text);
+	    Intent intent  =getIntent();
+	    contnetText = intent.getStringExtra("ContentText");
+	    imageUri = Uri.parse(intent.getStringExtra("ImageUri"));
+	    textview.setText(contnetText);
+	    Picasso.with(Neirong.this).load(imageUri).config(Bitmap.Config.RGB_565).into(imageview);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

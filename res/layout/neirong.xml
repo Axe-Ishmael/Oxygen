@@ -9,14 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
          android:layout_gravity="center_horizontal"
-         android:src="@drawable/pure001"
         />
     
     <TextView
         android:id="@+id/nr_text"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="活动描述"
         android:background="@drawable/textview_border"
         android:layout_gravity="center_horizontal"
         />

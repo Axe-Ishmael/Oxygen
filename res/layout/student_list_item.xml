@@ -6,17 +6,18 @@
 
     <ImageView
         android:id="@+id/student_pic"
-        android:layout_width="50dp"
-        android:layout_height="68dp"
-        android:layout_margin="3dp"
-        android:layout_weight="0.96"
+        android:layout_width="106dp"
+        android:layout_height="60dp"
+        android:layout_margin="1dp"
         android:background="#FFFFFF"
-        android:padding="3dp" />
+        android:paddingTop="1dp"
+        android:scaleType="fitXY" />
 
     <RelativeLayout
         android:layout_width="20dp"
         android:layout_height="62dp"
         android:layout_weight="2.43"
+        android:paddingTop="3dp"
         android:background="@drawable/edittext" >
 
     <TextView
