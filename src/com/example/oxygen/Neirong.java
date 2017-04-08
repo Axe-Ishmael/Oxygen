@@ -34,6 +34,10 @@ public class Neirong extends Activity{
 	    imageUri = Uri.parse(intent.getStringExtra("ImageUri"));
 	    textview.setText(contnetText);
 	    Picasso.with(Neirong.this).load(imageUri).config(Bitmap.Config.RGB_565).into(imageview);
+	   // imageview.setPivotX(imageview.getWidth()/2);
+	    //imageview.setPivotY(imageview.getPivotY()/2);
+	   // imageview.setRotation(90);//设置图像的旋转
+	    
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

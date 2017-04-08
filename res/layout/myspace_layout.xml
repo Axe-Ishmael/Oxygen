@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bc12"
     android:orientation="vertical" >
     
-     <TextView
+     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text=" 我的空间"
-        android:textSize="20dp"
+        android:src="@drawable/my60"
         />
      <RelativeLayout
          android:layout_width="fill_parent"
@@ -27,48 +27,48 @@
             android:paddingTop="20dip" 
             android:orientation="horizontal">
             
-              <TextView
+              <ImageView
                   android:id="@+id/My_username_title"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:paddingLeft="40dp"
-                  android:text="用户名："
-                  android:textColor="#0099cc"
+                  android:src="@drawable/user50300"
                   />
               
               <TextView
                   android:id="@+id/My_username"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                   android:textColor="#993399"
+                  android:textSize="20dp"
+                   android:textColor="#000000"
                  />
                   </LinearLayout>
                   
            <LinearLayout
-            android:id="@+id/layout_center"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layout_top"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
-            android:paddingTop="40dip" >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingLeft="40dp"
-                  android:text="门    派："
-                  android:textColor="#0099cc"
-                  />
+               android:id="@+id/layout_center"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/layout_top"
+               android:paddingLeft="10dip"
+               android:paddingRight="10dip"
+               android:paddingTop="40dip" >
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="46dp"
+                   android:paddingLeft="40dp"
+                   android:src="@drawable/occ5080" />
+
+               <TextView
+                   android:id="@+id/My_occupation"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingTop="9dp"
               
-              <TextView
-                  android:id="@+id/My_department"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:textColor="#0099cc"
-                 />
-              
-              
-              </LinearLayout>
+                   android:textColor="#000000"
+                   android:textSize="20dp" />
+           </LinearLayout>
+
                   </RelativeLayout>
               
      

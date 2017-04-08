@@ -28,9 +28,8 @@ import com.king.photo.util.Res;
 /**
  * 这个是显示一个文件夹里面的所有图片时的界面
  *
- * @author king
- * @QQ:595163260
- * @version 2014年10月18日  下午11:49:10
+ * 
+ * 
  */
 public class ShowAllPhoto extends Activity {
 	private GridView gridView;
@@ -75,6 +74,7 @@ public class ShowAllPhoto extends Activity {
 		isShowOkBt();
 	}
 	
+	/*
 	BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {  
 		  
         @Override  
@@ -83,6 +83,7 @@ public class ShowAllPhoto extends Activity {
         	gridImageAdapter.notifyDataSetChanged();
         }  
     };  
+    */
 
 	private class PreviewListener implements OnClickListener {
 		public void onClick(View v) {
@@ -120,7 +121,7 @@ public class ShowAllPhoto extends Activity {
 
 	private void init() {
 		IntentFilter filter = new IntentFilter("data.broadcast.action");  
-		registerReceiver(broadcastReceiver, filter);  
+		//registerReceiver(broadcastReceiver, filter);  
 		progressBar = (ProgressBar) findViewById(Res.getWidgetID("showallphoto_progressbar"));
 		progressBar.setVisibility(View.GONE);
 		gridView = (GridView) findViewById(Res.getWidgetID("showallphoto_myGrid"));

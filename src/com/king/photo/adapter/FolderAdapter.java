@@ -26,9 +26,7 @@ import com.king.photo.util.Res;
 /**
  * 这个是显示所有包含图片的文件夹的适配器
  *
- * @author king
- * @QQ:595163260
- * @version 2014年10月18日  下午11:49:44
+ * 
  */
 public class FolderAdapter extends BaseAdapter {
 

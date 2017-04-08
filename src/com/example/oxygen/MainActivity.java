@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
 			            startActivity(intent);  
 			            overridePendingTransition(R.anim.fade, R.anim.hold);  
 					}else{
-						Toast.makeText(MainActivity.this, "注册失败，请检查设置", 1000).show();
+						Toast.makeText(MainActivity.this, "登录失败", 1000).show();
 					}
 				}
 			});

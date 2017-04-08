@@ -51,7 +51,9 @@ public class MessageAdapter extends BaseAdapter{
 	       
 	        ImageView imageView = (ImageView) v.findViewById(R.id.student_pic);
 	        Picasso.with(mContext).load(mListMsgBean.get(position).getPhotoDrawableId()).resize(120, 70).centerCrop().config(Bitmap.Config.RGB_565).into(imageView);
-	       // imageView.setImageURI(mListMsgBean.get(position).getPhotoDrawableId());  
+	       //imageView.setRotation(90);//设置图片旋转
+	        // imageView.setImageURI(mListMsgBean.get(position).getPhotoDrawableId());  
+	        
 	          
 	        TextView nameMsg = (TextView)v.findViewById(R.id.student_name);  
 	        nameMsg.setText(mListMsgBean.get(position).getMessageName());  

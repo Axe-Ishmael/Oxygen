@@ -1,13 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/pure002"
+    android:background="@drawable/bc1"
     android:orientation="vertical" >
-
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title2"
+        android:paddingTop="60dp"
+        />
+ 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"	
+        android:paddingTop="65dp"
         android:background="@drawable/corner_round" >
 
         <LinearLayout
@@ -16,11 +23,11 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
-            android:paddingTop="20dip" >
+            android:layout_marginTop="10dip" >
 
+         
             <TextView
                 android:id="@+id/username"
-                android:paddingTop="150dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="用户名："
@@ -30,8 +37,8 @@
                 android:id="@+id/username_ed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                 android:background="@drawable/edittext"
-                android:layout_toRightOf="@id/username" />
+                android:layout_toRightOf="@id/username"
+                android:background="@drawable/edittext" />
         </LinearLayout>
 
         <LinearLayout

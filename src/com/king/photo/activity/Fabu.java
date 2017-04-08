@@ -117,6 +117,7 @@ public class Fabu extends Activity  {
 		Button bt3 = (Button) view
 				.findViewById(R.id.item_popupwindows_cancel);
 		send = (Button)findViewById(R.id.activity_selectimg_send);
+		send.setBackgroundColor(Color.parseColor("#000000"));
 		info_ed = (EditText)findViewById(R.id.info_ed);
 		//info_text = info_ed.getText().toString();
 		
@@ -235,6 +236,7 @@ public class Fabu extends Activity  {
 									// TODO Auto-generated method stub
 									if(arg1 == null){
 										Toast.makeText(Fabu.this, "上传成功", 800).show();
+										noScrollgridview.setAdapter(null);
 										Intent intent = new Intent(Fabu.this,Publish.class);
 										startActivity(intent);
 										finish();
@@ -278,6 +280,7 @@ public class Fabu extends Activity  {
 									// TODO Auto-generated method stub
 									if(arg1 == null){
 										Toast.makeText(Fabu.this, "上传成功", 800).show();
+										noScrollgridview.setAdapter(null);
 										Intent intent = new Intent(Fabu.this,Publish.class);
 										startActivity(intent);
 										finish();
@@ -313,11 +316,7 @@ public class Fabu extends Activity  {
 					ll_popup.startAnimation(AnimationUtils.loadAnimation(Fabu.this,R.anim.activity_translate_in));
 					pop.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
 				} else {
-					Intent intent = new Intent(Fabu.this,
-							GalleryActivity.class);
-					intent.putExtra("position", "1");
-					intent.putExtra("ID", arg2);
-					startActivity(intent);
+					
 				}
 			}
 		});
@@ -454,22 +453,7 @@ public class Fabu extends Activity  {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//switch (requestCode) {
-		/*
-		case TAKE_PICTURE:	
-			if (Bimp.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {
-				//Uri uri =data.getData(); 
-				//Log.d("TAGGGGGG",uri.toString());
-				String fileName = String.valueOf(System.currentTimeMillis());
-				Bitmap bm = (Bitmap) data.getExtras().get("data");
-				FileUtils.saveBitmap(bm, fileName);
-				
-				ImageItem takePhoto = new ImageItem();
-				takePhoto.setBitmap(bm);
-				Bimp.tempSelectBitmap.add(takePhoto);
-			}
-			break;
-			*/
+	
 		
 		if (resultCode != RESULT_OK) {
 
@@ -515,7 +499,8 @@ public class Fabu extends Activity  {
 					PublicWay.activityList.get(i).finish();
 				}
 			}
-			PublicWay.activityList.clear();
+			//noScrollgridview.setAdapter(null);
+			//PublicWay.activityList.clear();
 			//Intent intent  = new Intent(this,Publish.class) ;
             //startActivity(intent);
 			//finish();
@@ -527,11 +512,7 @@ public class Fabu extends Activity  {
      * 判断SDK Level 选择不同的打开相册的方式
      */
     protected void getImageFromAlbum() {  
-       /*
-    	Intent intent = new Intent(Intent.ACTION_PICK);  
-        intent.setType("image/*");//相片类型  
-        startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);  
-        */
+      
         
         boolean isKitKatO = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         Intent getAlbum;
@@ -584,6 +565,8 @@ public class Fabu extends Activity  {
      }
     }
     
+   
+
 
 }
 
