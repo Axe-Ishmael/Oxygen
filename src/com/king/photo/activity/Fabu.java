@@ -216,9 +216,13 @@ public class Fabu extends Activity  {
 					String info = info_text;
 					final InfoBean_stu infoBean_stu = new InfoBean_stu();
 					//infoBean.setInfo(info);
-					Toast.makeText(Fabu.this, info, 800).show();
+					//Toast.makeText(Fabu.this, info, 800).show();
 					final BmobFile bmobFile = new BmobFile(file);
 					infoBean_stu.setPicPath(bmobFile);
+					/*
+					 * 用bmobFile.upload()方法上传图片文件
+					 * 然后在上传成功的回调当中将上传成功的图片的Url设置给InfoBean_stu对象(这个对象包含String 和 Uri(在数据库上Uri是已String类型保存的))
+					 */
 					bmobFile.upload(new UploadFileListener() {
 						
 						@Override
@@ -226,9 +230,10 @@ public class Fabu extends Activity  {
 							// TODO Auto-generated method stub
 							if(arg0 == null){
 							String info = info_text;
-							String  uri = bmobFile.getFileUrl();
+							String  uri = bmobFile.getFileUrl();//获取到已经上传成功对象的Url
 							infoBean_stu.setUri(uri);
 							infoBean_stu.setInfo(info);
+							//将整个infoBean_stu对象上传
 							infoBean_stu.save(new SaveListener<String>() {
 								
 								@Override
